@@ -20,15 +20,21 @@ function Books() {
 					return (
 						<div
 							key={book.id}
-							className='border border-[#ddd] rounded-2xl  flex flex-col items-center bg-[#063970] p-5'>
+							className='border border-[#ddd] rounded-2xl  flex flex-col items-center justify-between bg-[#063970] p-5'>
 							{book.cover && (
-								<img src={book.cover} alt='bookCoverImage' />
+								<img
+									src={book.cover}
+									alt='bookCoverImage'
+									className='object-cover rounded-lg'
+								/>
 							)}
-							<h2 className='text-2xl text-[#eab676] uppercase my-5'>
+							<h2 className='text-2xl  text-[#eab676] uppercase my-5'>
 								{book.title}
 							</h2>
-							<p className='text-[#ddd]'>{book.desc}</p>
-							<p>{book.price}</p>
+							<p className='text-[#ddd] text-center my-4'>
+								{book.desc}
+							</p>
+							<p className='text-[#fff]'>${book.price}</p>
 						</div>
 					);
 				})}
