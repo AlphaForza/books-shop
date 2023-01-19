@@ -13,6 +13,14 @@ function Books() {
 		};
 		fetchAllBooks();
 	}, []);
+	const handleDelete = async (id) => {
+		try {
+			await axios.delete('http://localhost:8800/books/' + id);
+			window.location.reload();
+		} catch (err) {
+			console.log(err);
+		}
+	};
 	return (
 		<div className='container mx-auto'>
 			<div className='grid grid-cols-3 gap-5'>
@@ -35,6 +43,17 @@ function Books() {
 								{book.desc}
 							</p>
 							<p className='text-[#fff]'>${book.price}</p>
+
+							<div className='flex gap-5'>
+								<button
+									onClick={() => handleDelete(book.id)}
+									className='text-lg text-orange-300 border border-[#ddd] px-6 py-2 rounded-full'>
+									Delete
+								</button>
+								<button className='text-lg text-orange-300 border border-[#ddd] px-6  py-2 rounded-full'>
+									Update
+								</button>
+							</div>
 						</div>
 					);
 				})}
