@@ -18,7 +18,7 @@ app.use(cors());
 app.get('/', (req, res) => {
 	res.json('this is the backend');
 });
-
+// select all books from bookshop
 app.get('/books', (req, res) => {
 	const q = 'SELECT * FROM books';
 	db.query(q, (err, data) => {
@@ -26,7 +26,7 @@ app.get('/books', (req, res) => {
 		return res.json(data);
 	});
 });
-
+// insert books
 app.post('/books', (req, res) => {
 	const q =
 		'INSERT INTO books (`title`,`desc`, `cover`, `price`) VALUES (?)';
@@ -42,11 +42,27 @@ app.post('/books', (req, res) => {
 		return res.json(data);
 	});
 });
-
+// delete books
 app.delete('/books/:id', (req, res) => {
 	const bookId = req.params.id;
 	const q = 'DELETE FROM books WHERE id = ?';
 	db.query(q, [bookId], (err, data) => {
+		if (err) return res.json(err);
+		return res.json(data);
+	});
+});
+// update books
+app.put('/books/:id', (req, res) => {
+	const bookId = req.params.id;
+	const q =
+		'UPDATE books SET `title` = ?, `desc` = ?, `cover` = ?, `price` = ? WHERE id = ?';
+	const values = [
+		req.body.title,
+		req.body.desc,
+		req.body.cover,
+		req.body.price,
+	];
+	db.query(q, [...values, bookId], (err, data) => {
 		if (err) return res.json(err);
 		return res.json(data);
 	});

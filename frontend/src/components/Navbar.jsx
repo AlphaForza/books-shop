@@ -16,7 +16,7 @@ function Navbar() {
 							</Link>
 						</li>
 						<li>
-							<Link to='/update' className='text-[#fff] text-lg'>
+							<Link to='/update/:id' className='text-[#fff] text-lg'>
 								Update Book
 							</Link>
 						</li>

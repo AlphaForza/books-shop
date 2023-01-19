@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { data } from 'autoprefixer';
+import { Link } from 'react-router-dom';
 
 function Books() {
 	const [books, setBooks] = useState([]);
@@ -51,7 +52,7 @@ function Books() {
 									Delete
 								</button>
 								<button className='text-lg text-orange-300 border border-[#ddd] px-6  py-2 rounded-full'>
-									Update
+									<Link to={`/update/${book.id}`}>Update</Link>
 								</button>
 							</div>
 						</div>
